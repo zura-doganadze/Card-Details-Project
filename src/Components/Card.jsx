@@ -39,7 +39,7 @@ const BackSide = styled.div`
   height: 245px;
   border-radius: 10px;
   background: linear-gradient(169deg, #fff 5%, #d2d3d9 91.69%);
-margin: 30px 0 0 70px;
+  margin: 30px 0 0 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,45 +68,43 @@ const CVCContainer = styled.div`
 `;
 function Card() {
   return (
-    <div>
-      <CardContainer>
-        <FrontSide>
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="84"
-              height="47"
-              viewBox="0 0 84 47"
-              fill="none"
-            >
-              <ellipse
-                cx="23.4783"
-                cy="23.5"
-                rx="23.4783"
-                ry="23.5"
-                fill="white"
-              />
-              <path
-                d="M83.5 23.5C83.5 29.0647 78.9932 33.575 73.4348 33.575C67.8764 33.575 63.3696 29.0647 63.3696 23.5C63.3696 17.9353 67.8764 13.425 73.4348 13.425C78.9932 13.425 83.5 17.9353 83.5 23.5Z"
-                stroke="white"
-              />
-            </svg>{" "}
-          </div>
-          <CardNumberContainer> 0000 0000 0000 0000</CardNumberContainer>
-          <NameWrapper>
-            <div>JANE APPLESEED</div>
-            <div>00/00</div>
-          </NameWrapper>
-        </FrontSide>
-        <BackSide>
-          <BlackLine></BlackLine>
-          <CVCContainer>000</CVCContainer>
-          <div>
-            <img src={Lines} alt="" />
-          </div>
-        </BackSide>
-      </CardContainer>
-    </div>
+    <CardContainer>
+      <FrontSide>
+        <div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="84"
+            height="47"
+            viewBox="0 0 84 47"
+            fill="none"
+          >
+            <ellipse
+              cx="23.4783"
+              cy="23.5"
+              rx="23.4783"
+              ry="23.5"
+              fill="white"
+            />
+            <path
+              d="M83.5 23.5C83.5 29.0647 78.9932 33.575 73.4348 33.575C67.8764 33.575 63.3696 29.0647 63.3696 23.5C63.3696 17.9353 67.8764 13.425 73.4348 13.425C78.9932 13.425 83.5 17.9353 83.5 23.5Z"
+              stroke="white"
+            />
+          </svg>{" "}
+        </div>
+        <CardNumberContainer> 0000 0000 0000 0000</CardNumberContainer>
+        <NameWrapper>
+          <div>JANE APPLESEED</div>
+          <div>00/00</div>
+        </NameWrapper>
+      </FrontSide>
+      <BackSide>
+        <BlackLine></BlackLine>
+        <CVCContainer>000</CVCContainer>
+        <div>
+          <img src={Lines} alt="" />
+        </div>
+      </BackSide>
+    </CardContainer>
   );
 }
 
