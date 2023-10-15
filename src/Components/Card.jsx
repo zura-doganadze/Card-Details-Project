@@ -2,11 +2,19 @@ import styled from "styled-components";
 import Lines from "../assets/img/Line.png";
 
 const CardContainer = styled.div`
-  /* background-color: #21092f; */
-  /* width: 480px;
-  min-height: 100vh;
-  position: relative;
-  margin-right: 50px; */
+  margin: 0 30px;
+  max-width: 533px;
+  width: 100%;
+
+  @media (max-width: 750px) { 
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    max-height: 450px;
+    height: 100%;
+    position: relative;
+    
+  }
 `;
 const FrontSide = styled.div`
   max-width: 447px;
@@ -20,11 +28,20 @@ const FrontSide = styled.div`
   flex-direction: column;
   align-items: flex-start;
   color: #fff;
+
+  @media (max-width: 750px) {
+    position: absolute;
+    top: 160px;
+  }
 `;
 const CardNumberContainer = styled.div`
   margin: 64px 0px 25px 0px;
   font-size: 28px;
   letter-spacing: 3.422px;
+
+  @media (max-width: 910px) {
+    font-size: 18px;
+  }
 `;
 const NameWrapper = styled.div`
   width: 100%;
@@ -33,13 +50,20 @@ const NameWrapper = styled.div`
 `;
 
 //BackSide
+const BackSideWrap = styled.div `
+  max-width: 530px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+`
 const BackSide = styled.div`
   max-width: 447px;
   width: 100%;
   height: 245px;
   border-radius: 10px;
   background: linear-gradient(169deg, #fff 5%, #d2d3d9 91.69%);
-  margin: 30px 0 0 70px;
+  margin: 30px 0 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,8 +76,7 @@ const BlackLine = styled.div`
   margin-top: 23px;
 `;
 const CVCContainer = styled.div`
-  max-width: 361px;
-  width: 100%;
+  width: 80%;
   height: 38px;
   border-radius: 4px;
   background: #adb5be;
@@ -97,13 +120,15 @@ function Card() {
           <div>00/00</div>
         </NameWrapper>
       </FrontSide>
-      <BackSide>
-        <BlackLine></BlackLine>
-        <CVCContainer>000</CVCContainer>
-        <div>
-          <img src={Lines} alt="" />
-        </div>
-      </BackSide>
+      <BackSideWrap>
+        <BackSide>
+          <BlackLine></BlackLine>
+          <CVCContainer>000</CVCContainer>
+          <div>
+            <img src={Lines} alt="" />
+          </div>
+        </BackSide>
+      </BackSideWrap>
     </CardContainer>
   );
 }

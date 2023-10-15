@@ -27,7 +27,7 @@ body:after {
 }
 @media screen and (max-width: 750px) {
   body:after {
-    background-color: red;
+    background-color: #21092F;
     height: 40%;
     width: 100%;
   }

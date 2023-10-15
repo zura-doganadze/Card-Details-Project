@@ -3,11 +3,17 @@ import styled from "styled-components";
 const FormWrapper = styled.div`
   max-width: 380px;
   width: 100%;
+  margin-right: 30px;
+
+  @media (max-width: 750px) {
+    margin: 0 20px;
+    max-width: 440px;
+  }
 `;
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-  max-width: 381px;
+  /* max-width: 381px; */
   width: 100%;
 `;
 const NameNumberWrap = styled.div`
@@ -24,7 +30,7 @@ const Label = styled.label`
   margin: 9px 0;
 `;
 const NameInput = styled.input`
-  max-width: 381px;
+  /* max-width: 381px; */
   width: 100%;
   padding: 11px 16px;
   border-radius: 8px;
@@ -36,7 +42,7 @@ const NameInput = styled.input`
   font-family: "Space Grotesk", sans-serif;
 `;
 const CardNumberInput = styled.input`
-  max-width: 381px;
+  /* max-width: 381px; */
   width: 100%;
   padding: 11px 16px;
   border-radius: 8px;
@@ -73,7 +79,7 @@ const YYInput = styled.input`
   color: #21092f;
   font-size: 18px;
   padding: 11px 16px;
-  margin: 0 20px 0 30px;
+  margin: 0 20px 0 18px;
   max-width: 80px;
   width: 100%;
   border-radius: 8px;
@@ -96,7 +102,7 @@ const CCVInput = styled.input`
 const Button = styled.button`
   color: #fff;
   font-size: 18px;
-  max-width: 381px;
+  /* max-width: 381px; */
   width: 100%;
   border-radius: 8px;
   background: #21092f;
@@ -129,8 +135,10 @@ function Form() {
           <DataWrapper>
             <DataContainer>
               <Label htmlFor="">Exp. Date (MM/YY)</Label>
-              <MMInput type="text" name="" id="" placeholder="MM" />
-              <YYInput type="text" name="" id="" placeholder="YY" />
+              <div>
+                <MMInput type="text" name="" id="" placeholder="MM" />
+                <YYInput type="text" name="" id="" placeholder="YY" />
+              </div>
             </DataContainer>
             <div>
               <Label htmlFor="">CVC</Label>

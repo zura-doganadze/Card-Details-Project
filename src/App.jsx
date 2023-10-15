@@ -8,6 +8,10 @@ const MainWrapper = styled.div`
   width: 100%;
   align-items: center;
   
+  @media (max-width: 760px ) {
+    flex-direction: column;
+    margin: 30px 16px 0;
+  }
 `;
 function App() {
   return (
