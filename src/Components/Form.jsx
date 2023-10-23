@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 const FormWrapper = styled.div`
   max-width: 380px;
@@ -13,7 +16,6 @@ const FormWrapper = styled.div`
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-  /* max-width: 381px; */
   width: 100%;
 `;
 const NameNumberWrap = styled.div`
@@ -58,6 +60,7 @@ const DataWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: flex-end;
+  align-items: baseline;
   margin: 26px 0 40px 0;
 `;
 const DataContainer = styled.div`
@@ -111,42 +114,80 @@ const Button = styled.button`
   text-transform: capitalize;
   letter-spacing: 1.222px;
 `;
+const ErrorMessage = styled.p`
+  color: #ff5050;
+  font-size: 14px;
+  margin-top: 8px;
+`;
+
+const schema = yup
+  .object({
+    cardholderName: yup.string().required(),
+    cardName: yup.string().required().length(16),
+    age: yup.number().positive().integer().required(),
+    mm: yup.number().positive().integer().min(2).required(),
+    yy: yup.number().positive().integer().min(2).required(),
+    cvc: yup.number().positive().integer().min(3).required(),
+  })
+  .required();
+
 function Form() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const onSubmit = (data) => console.log(data);
+  console.log(errors);
   return (
     <FormWrapper>
       <div>
-        <FormContainer action="">
+        <FormContainer onSubmit={handleSubmit(onSubmit)}>
           <NameNumberWrap>
             <Label htmlFor="">Cardholder name</Label>
             <NameInput
+              {...register("cardholderName")}
               type="text"
-              name=""
-              id=""
               placeholder="e.g. Jane Appleseed"
             />
+            {errors.cardholderName && (
+              <ErrorMessage>This field is empty</ErrorMessage>
+            )}
             <Label htmlFor="">Card Number</Label>
             <CardNumberInput
+              {...register("cardName")}
               type="text"
-              name=""
-              id=""
-              placeholder="ee.g. 1234 5678 9123 0000"
+              placeholder="e.g. 1234 5678 9123 0000"
             />
+            {errors.cardName && (
+              <ErrorMessage>Wrong format, numbers only</ErrorMessage>
+            )}
           </NameNumberWrap>
           <DataWrapper>
             <DataContainer>
               <Label htmlFor="">Exp. Date (MM/YY)</Label>
               <div>
-                <MMInput type="text" name="" id="" placeholder="MM" />
-                <YYInput type="text" name="" id="" placeholder="YY" />
+                <MMInput {...register("mm")} type="number" placeholder="MM" />
+                <YYInput {...register("yy")} type="number" placeholder="YY" />
               </div>
+              {(errors.mm || errors.yy) && (
+                <ErrorMessage>Can’t be blank</ErrorMessage>
+              )}
             </DataContainer>
             <div>
               <Label htmlFor="">CVC</Label>
-              <CCVInput type="text" name="" id="" placeholder="e.g. 123" />
+              <CCVInput
+                {...register("cvc")}
+                type="number"
+                placeholder="e.g. 123"
+              />
+              {errors.cvc && <ErrorMessage>Can’t be blank</ErrorMessage>}
             </div>
           </DataWrapper>
+          <Button type="submit">Confirm</Button>
         </FormContainer>
-        <Button>confitm</Button>
       </div>
     </FormWrapper>
   );
