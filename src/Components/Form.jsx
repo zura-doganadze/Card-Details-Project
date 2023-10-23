@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useState } from "react";
 
 const FormWrapper = styled.div`
   max-width: 380px;
@@ -131,7 +132,7 @@ const schema = yup
   })
   .required();
 
-function Form() {
+function Form(props) {
   const {
     register,
     handleSubmit,
@@ -149,6 +150,8 @@ function Form() {
             <Label htmlFor="">Cardholder name</Label>
             <NameInput
               {...register("cardholderName")}
+              value={props.names}
+              onChange={(event) => props.setNames(event.target.value)}
               type="text"
               placeholder="e.g. Jane Appleseed"
             />
@@ -158,6 +161,8 @@ function Form() {
             <Label htmlFor="">Card Number</Label>
             <CardNumberInput
               {...register("cardName")}
+              value={props.cardNumber}
+              onChange={(event) => props.setCardNUmber(event.target.value)}
               type="text"
               placeholder="e.g. 1234 5678 9123 0000"
             />
@@ -169,8 +174,20 @@ function Form() {
             <DataContainer>
               <Label htmlFor="">Exp. Date (MM/YY)</Label>
               <div>
-                <MMInput {...register("mm")} type="number" placeholder="MM" />
-                <YYInput {...register("yy")} type="number" placeholder="YY" />
+                <MMInput
+                  {...register("mm")}
+                  value={props.mm}
+                  onChange={(event) => props.setMm(event.target.value)}
+                  type="text"
+                  placeholder="MM"
+                />
+                <YYInput
+                  {...register("yy")}
+                  value={props.yy}
+                  onChange={(event) => props.setYy(event.target.value)}
+                  type="text"
+                  placeholder="YY"
+                />
               </div>
               {(errors.mm || errors.yy) && (
                 <ErrorMessage>Can’t be blank</ErrorMessage>
@@ -180,7 +197,9 @@ function Form() {
               <Label htmlFor="">CVC</Label>
               <CCVInput
                 {...register("cvc")}
-                type="number"
+                value={props.eg}
+                onChange={(event) => props.setEg(event.target.value)}
+                type="text"
                 placeholder="e.g. 123"
               />
               {errors.cvc && <ErrorMessage>Can’t be blank</ErrorMessage>}

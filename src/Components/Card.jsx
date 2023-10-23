@@ -6,14 +6,13 @@ const CardContainer = styled.div`
   max-width: 533px;
   width: 100%;
 
-  @media (max-width: 750px) { 
+  @media (max-width: 750px) {
     display: flex;
     flex-direction: column-reverse;
     justify-content: flex-end;
     max-height: 450px;
     height: 100%;
     position: relative;
-    
   }
 `;
 const FrontSide = styled.div`
@@ -50,13 +49,12 @@ const NameWrapper = styled.div`
 `;
 
 //BackSide
-const BackSideWrap = styled.div `
+const BackSideWrap = styled.div`
   max-width: 530px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
-
-`
+`;
 const BackSide = styled.div`
   max-width: 447px;
   width: 100%;
@@ -89,7 +87,7 @@ const CVCContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
 `;
-function Card() {
+function Card(props) {
   return (
     <CardContainer>
       <FrontSide>
@@ -114,16 +112,21 @@ function Card() {
             />
           </svg>{" "}
         </div>
-        <CardNumberContainer> 0000 0000 0000 0000</CardNumberContainer>
+        <CardNumberContainer>
+          {props.cardNumber ? props.cardNumber : "0000 0000 0000 0000"}
+        </CardNumberContainer>
         <NameWrapper>
-          <div>JANE APPLESEED</div>
-          <div>00/00</div>
+          <div>{props.names ? props.names : "JANE APPLESEED"}</div>
+          <div>
+            {/* {props.mm ? props.mm : "00" + "/" + props.yy ? props.yy : "00"} */}
+            {props.mm ? props.mm : "00"} / {props.yy ? props.yy : "00"}
+          </div>
         </NameWrapper>
       </FrontSide>
       <BackSideWrap>
         <BackSide>
           <BlackLine></BlackLine>
-          <CVCContainer>000</CVCContainer>
+          <CVCContainer>{props.eg ? props.eg : "000"}</CVCContainer>
           <div>
             <img src={Lines} alt="" />
           </div>
