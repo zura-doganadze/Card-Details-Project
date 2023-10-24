@@ -3,17 +3,6 @@ import Card from "../src/Components/Card";
 import Form from "./Components/Form";
 import { useState } from "react";
 
-const MainWrapper = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  align-items: center;
-
-  @media (max-width: 760px) {
-    flex-direction: column;
-    margin: 30px 16px 0;
-  }
-`;
 function App() {
   const [cardNumber, setCardNUmber] = useState("");
   const [names, setNames] = useState("");
@@ -41,3 +30,15 @@ function App() {
 }
 
 export default App;
+
+const MainWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+
+  @media (max-width: 760px) {
+    flex-direction: column;
+    margin: 30px 16px 0;
+  }
+`;
