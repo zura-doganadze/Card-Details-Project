@@ -5,6 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import PropTypes from "prop-types";
 import Checking from "./Checking.jsx";
+import React from "react";
+import { InputMask } from "primereact/inputmask";
 
 const schema = yup
   .object({
@@ -66,13 +68,30 @@ function Form(props) {
                 <ErrorMessage>This field is empty</ErrorMessage>
               )}
               <Label htmlFor="">Card Number</Label>
-              <CardNumberInput
-                {...register("cardName")}
+
+              {/* <InputMask mask="9999 9999 9999 9999">
+                <CardNumberInput
+                  {...register("cardName")}
+                  value={props.cardNumber}
+                  onChange={(event) => props.setCardNUmber(event.target.value)}
+                  type="text"
+                  placeholder="e.g. 1234 5678 9123 0000"
+                />{" "}
+              </InputMask> */}
+              <div>
+                <StyledInputMask
+                  value={props.cardNumber}
+                  onChange={(event) => props.setCardNUmber(event.target.value)}
+                  mask="9999 9999 9999 99"
+                  placeholder="e.g. 1234 5678 9123 0000"
+                />
+              </div>
+              {/* <InputMask
+                className="inputmask"
                 value={props.cardNumber}
                 onChange={(event) => props.setCardNUmber(event.target.value)}
-                type="text"
-                placeholder="e.g. 1234 5678 9123 0000"
-              />
+                mask="9999 9999 9999 9999"
+              /> */}
               {errors.cardName && (
                 <ErrorMessage>Wrong format, numbers only</ErrorMessage>
               )}
@@ -173,7 +192,16 @@ const CardNumberInput = styled.input`
   font-size: 18px;
   font-family: "Space Grotesk", sans-serif;
 `;
-
+const StyledInputMask = styled(InputMask)`
+  width: 100%;
+  padding: 11px 16px;
+  border-radius: 8px;
+  border: 1px solid #dfdee0;
+  background: #fff;
+  color: #21092f;
+  font-size: 18px;
+  font-family: "Space Grotesk", sans-serif;
+`;
 const DataWrapper = styled.div`
   width: 100%;
   display: flex;

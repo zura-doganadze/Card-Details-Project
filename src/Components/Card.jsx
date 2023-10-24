@@ -40,7 +40,7 @@ function Card(props) {
         <NameWrapper>
           <div>{props.names ? props.names : "JANE APPLESEED"}</div>
           <div>
-            {props.mm ? props.mm : "00"} / {props.yy ? props.yy : "00"}
+             {props.mm ? props.mm : "00"} / {props.yy ? props.yy : "00"}
           </div>
         </NameWrapper>
       </FrontSide>
