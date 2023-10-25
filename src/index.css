@@ -15,7 +15,7 @@ body {
 }
 body:after {
   content: "";
-  background-color: #21092F;
+  background-color: #21092f;
   background-size: cover;
   width: 33.5%;
   height: 100vh;
@@ -27,8 +27,9 @@ body:after {
 }
 @media screen and (max-width: 750px) {
   body:after {
-    background-color: #21092F;
+    background-color: #21092f;
     height: 40%;
     width: 100%;
   }
 }
+

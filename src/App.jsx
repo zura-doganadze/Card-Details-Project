@@ -9,7 +9,6 @@ function App() {
   const [mm, setMm] = useState("");
   const [yy, setYy] = useState("");
   const [eg, setEg] = useState("");
-
   return (
     <MainWrapper>
       <Card names={names} cardNumber={cardNumber} mm={mm} yy={yy} eg={eg} />

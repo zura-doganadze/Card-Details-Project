@@ -68,28 +68,12 @@ function Form(props) {
                 <ErrorMessage>This field is empty</ErrorMessage>
               )}
               <Label htmlFor="">Card Number</Label>
-
-              {/* <InputMask mask="9999 9999 9999 9999">
-                <CardNumberInput
-                  {...register("cardName")}
-                  value={props.cardNumber}
-                  onChange={(event) => props.setCardNUmber(event.target.value)}
-                  type="text"
-                  placeholder="e.g. 1234 5678 9123 0000"
-                />{" "}
-              </InputMask> */}
               <StyledInputMask
                 value={props.cardNumber}
                 onChange={(event) => props.setCardNUmber(event.target.value)}
                 mask="9999 9999 9999 9999"
                 placeholder="e.g. 1234 5678 9123 0000"
               />
-              {/* <InputMask
-                className="inputmask"
-                value={props.cardNumber}
-                onChange={(event) => props.setCardNUmber(event.target.value)}
-                mask="9999 9999 9999 9999"
-              /> */}
               {errors.cardName && (
                 <ErrorMessage>Wrong format, numbers only</ErrorMessage>
               )}
@@ -99,14 +83,14 @@ function Form(props) {
                 <Label htmlFor="">Exp. Date (MM/YY)</Label>
                 <div>
                   <StyledInputMaskmm
-                    {...register("mm")}
+                    // {...register("mm")}
                     value={props.mm}
                     onChange={(event) => props.setMm(event.target.value)}
                     mask="99"
                     placeholder="MM"
                   />
                   <StyledInputMaskyy
-                    {...register("yy")}
+                    // {...register("yy")}
                     value={props.yy}
                     onChange={(event) => props.setYy(event.target.value)}
                     mask="99"
@@ -120,7 +104,7 @@ function Form(props) {
               <div>
                 <Label htmlFor="">CVC</Label>
                 <StyledInputMaskyycvc
-                  {...register("cvc")}
+                  // {...register("cvc")}
                   value={props.eg}
                   onChange={(event) => props.setEg(event.target.value)}
                   mask="999"
