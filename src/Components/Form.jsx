@@ -78,14 +78,12 @@ function Form(props) {
                   placeholder="e.g. 1234 5678 9123 0000"
                 />{" "}
               </InputMask> */}
-              <div>
-                <StyledInputMask
-                  value={props.cardNumber}
-                  onChange={(event) => props.setCardNUmber(event.target.value)}
-                  mask="9999 9999 9999 9999"
-                  placeholder="e.g. 1234 5678 9123 0000"
-                />
-              </div>
+              <StyledInputMask
+                value={props.cardNumber}
+                onChange={(event) => props.setCardNUmber(event.target.value)}
+                mask="9999 9999 9999 9999"
+                placeholder="e.g. 1234 5678 9123 0000"
+              />
               {/* <InputMask
                 className="inputmask"
                 value={props.cardNumber}
@@ -100,18 +98,18 @@ function Form(props) {
               <DataContainer>
                 <Label htmlFor="">Exp. Date (MM/YY)</Label>
                 <div>
-                  <MMInput
+                  <StyledInputMaskmm
                     {...register("mm")}
                     value={props.mm}
                     onChange={(event) => props.setMm(event.target.value)}
-                    type="text"
+                    mask="99"
                     placeholder="MM"
                   />
-                  <YYInput
+                  <StyledInputMaskyy
                     {...register("yy")}
                     value={props.yy}
                     onChange={(event) => props.setYy(event.target.value)}
-                    type="text"
+                    mask="99"
                     placeholder="YY"
                   />
                 </div>
@@ -121,11 +119,11 @@ function Form(props) {
               </DataContainer>
               <div>
                 <Label htmlFor="">CVC</Label>
-                <CCVInput
+                <StyledInputMaskyycvc
                   {...register("cvc")}
                   value={props.eg}
                   onChange={(event) => props.setEg(event.target.value)}
-                  type="text"
+                  mask="999"
                   placeholder="e.g. 123"
                 />
                 {errors.cvc && <ErrorMessage>Can’t be blank</ErrorMessage>}
@@ -200,7 +198,38 @@ const StyledInputMask = styled(InputMask)`
   background: #fff;
   color: #21092f;
   font-size: 18px;
-  font-family: "Space Grotesk", sans-serif;
+`;
+const StyledInputMaskmm = styled(InputMask)`
+  color: #21092f;
+  font-size: 18px;
+  padding: 11px 16px;
+  max-width: 80px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #dfdee0;
+  background: #fff;
+`;
+const StyledInputMaskyy = styled(InputMask)`
+  color: #21092f;
+  font-size: 18px;
+  padding: 11px 16px;
+  margin: 0 20px 0 18px;
+  max-width: 80px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #dfdee0;
+  background: #fff;
+`;
+const StyledInputMaskyycvc = styled(InputMask)`
+  color: #21092f;
+  font-size: 18px;
+  padding: 11px 16px;
+  margin-top: 9px;
+  max-width: 191px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #dfdee0;
+  background: #fff;
 `;
 const DataWrapper = styled.div`
   width: 100%;
@@ -213,41 +242,7 @@ const DataContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
-const MMInput = styled.input`
-  color: #21092f;
-  font-size: 18px;
-  padding: 11px 16px;
-  max-width: 80px;
-  width: 100%;
-  border-radius: 8px;
-  border: 1px solid #dfdee0;
-  background: #fff;
-  font-family: "Space Grotesk", sans-serif;
-`;
-const YYInput = styled.input`
-  color: #21092f;
-  font-size: 18px;
-  padding: 11px 16px;
-  margin: 0 20px 0 18px;
-  max-width: 80px;
-  width: 100%;
-  border-radius: 8px;
-  border: 1px solid #dfdee0;
-  background: #fff;
-  font-family: "Space Grotesk", sans-serif;
-`;
-const CCVInput = styled.input`
-  color: #21092f;
-  font-size: 18px;
-  padding: 11px 16px;
-  margin-top: 9px;
-  max-width: 191px;
-  width: 100%;
-  border-radius: 8px;
-  border: 1px solid #dfdee0;
-  background: #fff;
-  font-family: "Space Grotesk", sans-serif;
-`;
+
 const Button = styled.button`
   color: #fff;
   font-size: 18px;
