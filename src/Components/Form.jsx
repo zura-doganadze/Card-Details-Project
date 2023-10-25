@@ -82,7 +82,7 @@ function Form(props) {
                 <StyledInputMask
                   value={props.cardNumber}
                   onChange={(event) => props.setCardNUmber(event.target.value)}
-                  mask="9999 9999 9999 99"
+                  mask="9999 9999 9999 9999"
                   placeholder="e.g. 1234 5678 9123 0000"
                 />
               </div>
