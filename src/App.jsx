@@ -4,25 +4,31 @@ import Form from "./Components/Form";
 import { useState } from "react";
 
 function App() {
-  const [cardNumber, setCardNUmber] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
   const [names, setNames] = useState("");
   const [mm, setMm] = useState("");
   const [yy, setYy] = useState("");
-  const [eg, setEg] = useState("");
+  const [age, setAge] = useState("");
   return (
     <MainWrapper>
-      <Card names={names} cardNumber={cardNumber} mm={mm} yy={yy} eg={eg} />
+      <Card
+        names={names ? names : ""}
+        cardNumber={cardNumber ? cardNumber : ""}
+        mm={mm ? mm : ""}
+        yy={yy ? yy : ""}
+        age={age ? age : ""}
+      />
       <Form
         names={names}
         setNames={setNames}
-        cardNumber={cardNumber}
-        setCardNUmber={setCardNUmber}
-        mm={mm}
+        cardNumber={cardNumber ? cardNumber : ""}
+        setCardNumber={setCardNumber}
+        mm={mm ? mm : ""}
         setMm={setMm}
-        yy={yy}
+        yy={yy ? yy : ""}
         setYy={setYy}
-        eg={eg}
-        setEg={setEg}
+        age={age ? age : ""}
+        setAge={setAge}
       />
     </MainWrapper>
   );

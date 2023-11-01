@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import PropTypes from "prop-types";
@@ -10,12 +10,12 @@ import { InputMask } from "primereact/inputmask";
 
 const schema = yup
   .object({
-    cardholderName: yup.string().required(),
-    cardName: yup.string().required().length(16),
-    // age: yup.number().positive().integer().required(),
-    mm: yup.number().positive().integer().required(),
+    names: yup.string().required(),
+    cardNumber: yup.number().required("Card number is required"),
+    age: yup.number().positive().integer().required(),
+    mm: yup.number().required(),
     yy: yup.number().positive().integer().required(),
-    cvc: yup.number().positive().integer().required(),
+    // cvc: yup.number().positive().integer().required(),
   })
   .required();
 
@@ -23,11 +23,13 @@ function Form(props) {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
   const [buttonClicked, setButtonClicked] = useState(false);
+  console.log(errors);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -41,13 +43,27 @@ function Form(props) {
     cardNumber: PropTypes.string.isRequired,
     mm: PropTypes.string.isRequired,
     yy: PropTypes.string.isRequired,
-    eg: PropTypes.string.isRequired,
+    age: PropTypes.string.isRequired,
     setNames: PropTypes.func.isRequired,
-    setCardNUmber: PropTypes.func.isRequired,
+    setCardNumber: PropTypes.func.isRequired,
     setMm: PropTypes.func.isRequired,
     setYy: PropTypes.func.isRequired,
-    setEg: PropTypes.func.isRequired,
+    setAge: PropTypes.func.isRequired,
   };
+
+  const names = watch("names");
+  const cardNumber = watch("cardNumber");
+  const mm = watch("mm");
+  const yy = watch("yy");
+  const age = watch("age");
+
+  useEffect(() => {
+    props.setNames(names);
+    props.setCardNumber(cardNumber);
+    props.setMm(mm);
+    props.setYy(yy);
+    props.setAge(age);
+  }, [names, cardNumber, mm, yy, age]);
   return (
     <FormWrapper>
       {buttonClicked && Object.keys(errors).length === 0 ? (
@@ -58,41 +74,30 @@ function Form(props) {
             <NameNumberWrap>
               <Label htmlFor="">Cardholder name</Label>
               <NameInput
-                {...register("cardholderName")}
-                value={props.names}
-                onChange={(event) => props.setNames(event.target.value)}
+                {...register("names")}
                 type="text"
                 placeholder="e.g. Jane Appleseed"
               />
-              {errors.cardholderName && (
-                <ErrorMessage>This field is empty</ErrorMessage>
-              )}
+              {errors.names && <ErrorMessage>This field is empty</ErrorMessage>}
               <Label htmlFor="">Card Number</Label>
               <StyledInputMask
-                value={props.cardNumber}
-                onChange={(event) => props.setCardNUmber(event.target.value)}
+                {...register("cardNumber")}
                 mask="9999 9999 9999 9999"
                 placeholder="e.g. 1234 5678 9123 0000"
               />
-              {errors.cardName && (
-                <ErrorMessage>Wrong format, numbers only</ErrorMessage>
-              )}
+              {errors.cardNumber && <ErrorMessage>Can’t be blank</ErrorMessage>}
             </NameNumberWrap>
             <DataWrapper>
               <DataContainer>
                 <Label htmlFor="">Exp. Date (MM/YY)</Label>
                 <div>
                   <StyledInputMaskmm
-                    // {...register("mm")}
-                    value={props.mm}
-                    onChange={(event) => props.setMm(event.target.value)}
+                    {...register("mm")}
                     mask="99"
                     placeholder="MM"
                   />
                   <StyledInputMaskyy
-                    // {...register("yy")}
-                    value={props.yy}
-                    onChange={(event) => props.setYy(event.target.value)}
+                    {...register("yy")}
                     mask="99"
                     placeholder="YY"
                   />
@@ -103,14 +108,12 @@ function Form(props) {
               </DataContainer>
               <div>
                 <Label htmlFor="">CVC</Label>
-                <StyledInputMaskyycvc
-                  // {...register("cvc")}
-                  value={props.eg}
-                  onChange={(event) => props.setEg(event.target.value)}
+                <StyledInputMaskcvc
+                  {...register("age")}
                   mask="999"
                   placeholder="e.g. 123"
                 />
-                {errors.cvc && <ErrorMessage>Can’t be blank</ErrorMessage>}
+                {errors.age && <ErrorMessage>Can’t be blank</ErrorMessage>}
               </div>
             </DataWrapper>
             <Button type="submit">Confirm</Button>
@@ -204,7 +207,7 @@ const StyledInputMaskyy = styled(InputMask)`
   border: 1px solid #dfdee0;
   background: #fff;
 `;
-const StyledInputMaskyycvc = styled(InputMask)`
+const StyledInputMaskcvc = styled(InputMask)`
   color: #21092f;
   font-size: 18px;
   padding: 11px 16px;

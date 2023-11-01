@@ -47,7 +47,7 @@ function Card(props) {
       <BackSideWrap>
         <BackSide>
           <BlackLine></BlackLine>
-          <CVCContainer>{props.eg ? props.eg : "000"}</CVCContainer>
+          <CVCContainer>{props.age ? props.age : "000"}</CVCContainer>
           <div>
             <img src={Lines} alt="" />
           </div>
